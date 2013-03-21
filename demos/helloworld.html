@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <title>Impress-Video Hello World</title>
+    <style>
+      .wrapper {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div>
+              <button id="playButton">Play</button>
+              <button id="pauseButton">Pause</button>
+              <button id="unloadButton">Unload</button>
+              
+              <br>
+              
+              <!--
+                  IMPORTANT!: Make sure the player_id param you submit in the url matches the actual ID of your iframe element.
+              -->
+              <iframe id="player" src="http://player.vimeo.com/video/7100569?api=1&amp;player_id=player" width="340" height="204" frameborder="0" webkitallowfullscreen allowfullscreen></iframe>
+              
+              
+            </div>
+        </div>
+    </div>
+    <div id="impress">
+      <div class="step" data-x="-1000" data-y="-3500" data-video-seek="0">
+        <p>0</p>
+      </div>
+      <div class="step" data-x="-2000" data-y="-3500" data-video-seek="1">
+        <p>1</p>
+      </div>
+      <div class="step" data-x="-3000" data-y="-3500" data-video-seek="2">
+        <p>2</p>
+      </div>
+      <div class="step" data-x="-4000" data-y="-3500" data-video-seek="3">
+        <p>3</p>
+      </div>
+      <div class="step" data-x="-5000" data-y="-3500" data-video-seek="4">
+        <p>4</p>
+      </div>
+      <div class="step" data-x="-6000" data-y="-3500" data-video-seek="5">
+        <p>5</p>
+      </div>
+      <div class="step" data-x="-7000" data-y="-3500" data-video-seek="10">
+        <p>10</p>
+      </div>
+      <div class="step" data-x="-8000" data-y="-3500" data-video-seek="20">
+        <p>20</p>
+      </div>
+      <div class="step" data-x="-9000" data-y="-3500" data-video-seek="30">
+        <p>30</p>
+      </div>
+      <div class="step" data-x="-10000" data-y="-3500" data-video-seek="60">
+        <p>60</p>
+      </div>
+      <div class="step" data-x="-11000" data-y="-3500" data-video-seek="90">
+        <p>90</p>
+      </div>
+      <div class="step" data-x="-12000" data-y="-3500" data-video-seek="120">
+        <p>120</p>
+      </div>
+    </div>
+    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js?ecc0e-1363721731"></script>
+    <script src="../jquery-1.9.1.min.js"></script>
+    <script src="../vimeo-interface.js"></script>
+    <script src="../impress.js"></script>
+    <script src="../impress-video.js"></script>
+</body>
+</html>
