@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Impress-Video Hello World</title>
+    <link href="../impress-demo.css" rel="stylesheet" />
     <style>
       .wrapper {
         position: fixed;
@@ -10,67 +11,99 @@
       }
     </style>
 </head>
-<body>
-    <div class="wrapper">
-        <div class="container">
-            <div>
-              <button id="playButton">Play</button>
-              <button id="pauseButton">Pause</button>
-              <button id="unloadButton">Unload</button>
-              
-              <br>
-              
-              <!--
-                  IMPORTANT!: Make sure the player_id param you submit in the url matches the actual ID of your iframe element.
-              -->
-              <iframe id="player" src="http://player.vimeo.com/video/7100569?api=1&amp;player_id=player" width="340" height="204" frameborder="0" webkitallowfullscreen allowfullscreen></iframe>
-              
-              
-            </div>
-        </div>
-    </div>
-    <div id="impress">
-      <div class="step" data-x="-1000" data-y="-3500" data-video-seek="0">
-        <p>0</p>
-      </div>
-      <div class="step" data-x="-2000" data-y="-3500" data-video-seek="1">
-        <p>1</p>
-      </div>
-      <div class="step" data-x="-3000" data-y="-3500" data-video-seek="2">
-        <p>2</p>
-      </div>
-      <div class="step" data-x="-4000" data-y="-3500" data-video-seek="3">
-        <p>3</p>
-      </div>
-      <div class="step" data-x="-5000" data-y="-3500" data-video-seek="4">
-        <p>4</p>
-      </div>
-      <div class="step" data-x="-6000" data-y="-3500" data-video-seek="5">
-        <p>5</p>
-      </div>
-      <div class="step" data-x="-7000" data-y="-3500" data-video-seek="10">
-        <p>10</p>
-      </div>
-      <div class="step" data-x="-8000" data-y="-3500" data-video-seek="20">
-        <p>20</p>
-      </div>
-      <div class="step" data-x="-9000" data-y="-3500" data-video-seek="30">
-        <p>30</p>
-      </div>
-      <div class="step" data-x="-10000" data-y="-3500" data-video-seek="60">
-        <p>60</p>
-      </div>
-      <div class="step" data-x="-11000" data-y="-3500" data-video-seek="90">
-        <p>90</p>
-      </div>
-      <div class="step" data-x="-12000" data-y="-3500" data-video-seek="120">
-        <p>120</p>
+<body class="impress-not-supported">
+  <!--
+      For example this fallback message is only visible when there is `impress-not-supported` class on body.
+  -->
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+  <div class="wrapper">
+    <div class="container">
+      <div>
+        <button id="playButton" style="display:none">Play</button>
+        <button id="pauseButton" style="display:none">Pause</button>
+        <br>
+        <!--
+          IMPORTANT!: Make sure the player_id param you submit in the url matches the actual ID of your iframe element.
+        -->
+        <iframe id="player" src="http://player.vimeo.com/video/7100569?api=1&amp;player_id=player" width="340" height="204" frameborder="0" webkitallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
-    <script src="http://a.vimeocdn.com/js/froogaloop2.min.js?ecc0e-1363721731"></script>
-    <script src="../jquery-1.9.1.min.js"></script>
-    <script src="../vimeo-interface.js"></script>
-    <script src="../impress.js"></script>
-    <script src="../impress-video.js"></script>
+  </div>
+  <div id="impress">
+    <div class="step" data-x="0" data-y="-3500" data-video-seek="0">
+      <p>Hello</p>
+    </div>
+    <div class="step" data-x="1000" data-y="-3500" data-video-seek="2">
+      <p>World</p>
+    </div>
+    <div class="step" data-x="2000" data-y="-3500" data-video-seek="4">
+      <p>These</p>
+    </div>
+    <div class="step" data-x="3000" data-y="-3500" data-video-seek="6">
+      <p>Slides</p>
+    </div>
+    <div class="step" data-x="4000" data-y="-3500" data-video-seek="8">
+      <p>Transition</p>
+    </div>
+    <div class="step" data-x="5000" data-y="-3500" data-video-seek="10">
+      <p>Automatically</p>
+    </div>
+    <div class="step" data-x="6000" data-y="-3500" data-video-seek="12">
+      <p>To</p>
+    </div>
+    <div class="step" data-x="7000" data-y="-3500" data-video-seek="14">
+      <p>Track</p>
+    </div>
+    <div class="step" data-x="8000" data-y="-3500" data-video-seek="16">
+      <p>With</p>
+    </div>
+    <div class="step" data-x="9000" data-y="-3500" data-video-seek="18">
+      <p>The</p>
+    </div>
+    <div class="step" data-x="10000" data-y="-3500" data-video-seek="20">
+      <p>Video</p>
+    </div>
+  </div>
+  
+  <!--
+
+      Hint is not related to impress.js in any way.
+
+      But it can show you how to use impress.js features in creative way.
+
+      When the presentation step is shown (selected) its element gets the class of "active" and the body element
+      gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+      so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+      the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+
+      This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+      the first step of presentation is visible for a couple of seconds.
+
+      ...
+
+      And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+      It's just a quick and dirty workaround to get different hint text for touch devices.
+      In a real world it should be at least placed in separate JS file ... and the touch content should be
+      probably just hidden somewhere in HTML - not hard-coded in the script.
+
+      Just sayin' ;)
+
+  -->
+  <div class="hint">
+      <p>Use a spacebar or arrow keys to navigate</p>
+  </div>
+  <script>
+  if ("ontouchstart" in document.documentElement) { 
+      document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+  }
+  </script>
+  
+  <script src="http://a.vimeocdn.com/js/froogaloop2.min.js?ecc0e-1363721731"></script>
+  <script src="../jquery-1.9.1.min.js"></script>
+  <script src="../impress.js"></script>
+  <script src="../impress-video.js"></script>
 </body>
 </html>
