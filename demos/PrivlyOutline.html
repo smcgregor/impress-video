@@ -1,0 +1,401 @@
+<!doctype html>
+<html>
+<head>
+    <title>Privly High-Level Introduction</title>
+    <link href="../privly.css" rel="stylesheet" />
+    <style>
+      .wrapper {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: black;
+        opacity: 1;
+      }
+      
+      .script {
+        display: none;
+        font-size: 35%;
+      } 
+      
+      .lobster {
+        font-family: 'Lobster', cursive;
+      }
+      
+      .subtitle {
+        font-size: 50%;
+      }
+      
+      .control_button {
+        width: 100%;
+        height: 100px;
+        font-size: 180%;
+        cursor: pointer;
+      }
+      
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+</head>
+<body class="impress-not-supported">
+  <!--
+      For example this fallback message is only visible when there is `impress-not-supported` class on body.
+  -->
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+  <div class="wrapper">
+    <div class="container">
+      <div>
+        <div style="display:none">
+        <button id="playButton" class="video_button">Play</button>
+        <button id="pauseButton" class="video_button">Pause</button>
+        <br>
+      </div>
+        <!--
+          IMPORTANT!: Make sure the player_id param you submit in the url matches the actual ID of your iframe element.
+        -->
+        <iframe id="player" src="http://player.vimeo.com/video/62461241?api=1&amp;player_id=player" width="10" height="10" frameborder="0" webkitallowfullscreen allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div id="impress">
+    <div class="step" data-x="1000" data-y="0" data-z="-1" data-video-seek="0">
+      <h1>High Level <span class="lobster">Privly</span> Introduction</h1>
+      <button id="playButton" class="video_button control_button">Play</button>
+      <div class="date">
+        <p>This presentation outlines the basic justification and system concepts behind <span class="lobster">Privly</span></p>
+        <p>Updated March 22nd, 2013</p>
+      </div>
+      <div class="script">
+        <p>
+          (landing page)
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="2000" data-y="0" data-z="-1" data-video-seek="7">
+      <p>Facebook, Gmail, Twitter, Reddit, Baidu, Match, MySpace, OkCupid, Google+, etc.</p>
+      <div class="script">
+        <p>
+          Modern web companies provide amazing platforms for staying connected with friends and loved ones, but this convenience comes at a cost.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="3000" data-y="0" data-z="-1000" data-video-seek="12" >
+      <ul>
+        <li><a href="http://www.hollywoodreporter.com/thr-esq/does-warner- bros-have-movie-250726">Sites own what you post</a></li>
+        <li><a href="http://www.reuters.com/article/2011/06/02/us-google-hacking-idUSTRE7506U320110602">Google reveals Gmail hacking, says likely from China</a></li>
+        <li><a href="http://www.symantec.com/connect/blogs/facebook- applications-accidentally-leaking-access-third-parties-updated">Facebook applications accidentally leak access to third parties</a></li>
+      </ul>
+      <div class="script">
+        <p>
+          Given time and the unavoidable threats of account compromise, changing design, and human error, a private conversation will inevitably not be private.
+
+          This poses a challenge: how do we bring a consistent privacy model to the web when we have no control over the communities our friends and loved ones use?
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="4000" data-y="0" data-z="-2000" data-video-seek="33">
+      <p class="lobster">Privly</p>
+      <ol>
+        <li>Grants users their privacy</li>
+        <li>Adds capabilities, while loosing no existing capabilities</li>
+        <li>Doesn't challenge the commercial interest of the rich and powerful</li>
+      </ol>
+      <div class="script">
+        <p>
+          Privly sidesteps this issue by allowing users to build on top of any website in a way that:
+
+          1. Grants users their privacy
+          2. Adds capabilities, while loosing no existing capabilities
+          and most importantly, 3. Doesn't challenge the commercial interest of the rich and powerful
+
+          Let me explain how Privly achieves these goals, but first, I need to explain how Privly works.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="5000" data-y="0" data-z="-3000" data-video-seek="59">
+      <p>
+        <strong>Untrusted Websites:</strong> 
+        Facebook, Gmail, Twitter, Reddit, Baidu, Match, MySpace, OkCupid, Google+, etc.</p>
+      <p>
+        <strong>Trusted Applications:</strong> 
+        <a class="lobster" href="https://github.com/privly/privly-organization/wiki/Posts">PlainPost</a>, 
+        <a href="https://github.com/privly/privly-organization/wiki/ZeroBin">ZeroBin</a>, PGP, 
+        <a href="https://github.com/privly/privly-organization/wiki/Injectable-Applications">etc</a>
+      </p>
+      <div class="script">
+        <p>
+          Privly adds privacy to websites by integrating trusted applications into untrusted websites.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="6000" data-y="0" data-z="-4000" data-video-seek="64">
+      <ul>
+        <li><strong>A browser extension:</strong> <a href="https://github.com/privly/privly-chrome">Chrome</a>, <a href="https://github.com/privly/privly-firefox">Firefox</a></li>
+        <li><strong>A Host Page:</strong> Facebook, Gmail, Twitter, Reddit, Baidu, Match, MySpace, OkCupid, Google+, etc.</li>
+        <li><strong>A "Privly Application":</strong> <a class="lobster" href="https://github.com/privly/privly-organization/wiki/Posts">PlainPost</a>, 
+        <a href="https://github.com/privly/privly-organization/wiki/ZeroBin">ZeroBin</a>, PGP, 
+        <a href="https://github.com/privly/privly-organization/wiki/Injectable-Applications">etc</a></li>
+      </ul>
+      <div class="script">
+        <p>
+          The components we are working with are:
+
+          (Pause a long time between each of these)
+          * A browser extension, this changes the way your browser behaves
+          * A Host Page, this could be any website
+          * And a "Privly Application", which I will explain in a moment.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="7000" data-y="0" data-z="-5000" data-video-seek="81" data-video-width="500px" data-video-height="500px">
+      <p>Look at the video. The <a href="https://github.com/privly/privly-chrome/issues/14">series of random colors</a> on the tooltip indicate regions of the page controlled by the extension.</p>
+      <div class="script">
+        <p>
+          So, let's say you are browsing Facebook and you encounter a specially formatted Privly-type link. If you don't have the Privly extension installed, you can click through to view the link.
+        </p>
+        <p>
+          However, if you do have the browser extension installed, you can view the same content inside the host page, for example Facebook, without needing to click through to the link.
+        </p>
+        <p>
+          What you are viewing here is a "Privly Application." It lives in its own separate world so the host page cannot see the content contained within. Privly applications are not limited to text content.
+        </p>
+      </div>
+    </div>
+    
+    
+    <div class="step" data-x="9000" data-y="0" data-z="-5500" data-video-seek="129">
+      <p>Privly is an "application stack" that allows for more usable security applications.</p>
+      <div class="script">
+        <p>
+          Photos, videos, content signing, IRC, and cryptography can all be embedded in these applications, and viewed anywhere on the web.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="9000" data-y="0" data-z="-5500" data-video-seek="129">
+      
+      
+      <p class="toggle_process">
+        Content injection process
+        <br />
+        <a href="https://github.com/privly/privly-organization/wiki/System-Hierarchy">
+          <image src="../images/Reading-Process.png" \>
+        </a>
+        <button class="control_button" onclick="$('.toggle_process').toggle();">Show Reading Diagram</button>
+      </p>
+      <p class="toggle_process" style="display:none;">
+        Content reading process
+        <br />
+        <a href="https://github.com/privly/privly-organization/wiki/System-Hierarchy">
+          <image src="../images/Posting-Process.png" \>
+        </a>
+        <button class="control_button" onclick="$('.toggle_process').toggle();">Show Posting Diagram</button>
+      </p>
+      
+      <div class="script">
+        <p>
+          You can implement any application you like on the Privly application stack.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="12000" data-y="0" data-z="-6000" data-video-seek="138" data-video-width="500px" data-video-height="500px">
+      <p class="lobster">PlainPosts</p>
+      <p>Sanitized HTML injection from any website.</p>
+      <div class="script">
+        <p>
+          Two Privly Applications we have implemented are:
+
+          PlainPosts, these ones will allow you to display HTML-only content in the context of a host page. Here we are seeing the news site Hacker News embedded into a webmail provider.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="14000" data-y="0" data-z="-7000" data-video-seek="150">
+      <div class="toggle_zerobin">
+        <p>ZeroBin Encryption</p>
+        <a href="http://sebsauvage.net/wiki/doku.php?id=php:zerobin#how_does_it_work">
+          <image src="http://sebsauvage.net/wiki/lib/exe/fetch.php?media=php:zerobin:zerobin_figure_encryption.png" \>
+        </a>
+        <button class="control_button" onclick="$('.toggle_zerobin').toggle();">Show Decryption Diagram</button>
+      </div>
+      <div class="toggle_zerobin" style="display:none;">
+        <p>ZeroBin Decryption</p>
+        <a href="http://sebsauvage.net/wiki/doku.php?id=php:zerobin#how_does_it_work">
+          <image src="http://sebsauvage.net/wiki/lib/exe/fetch.php?media=php:zerobin:zerobin_figure_decryption.png" \>
+        </a>
+        <button class="control_button" onclick="$('.toggle_zerobin').toggle();">Show Encryption Diagram</button>
+      </div>
+      <div class="script">
+        <p>
+          Another Privly Application is ZeroBin. ZeroBins encrypt their content before sending it to a remote server for storage. To read the ZeroBin content you need access to both the host page, and the encrypted content, wherever it is stored. If you are missing one or the other, you can't read the content.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="15000" data-y="0" data-z="-8000" data-video-seek="172">
+      <p class="lobster">Privly</p>
+      <ol>
+        <li>Grants users their privacy</li>
+        <li>Adds capabilities, while loosing no existing capabilities</li>
+        <li>Doesn't challenge the commercial interest of the rich and powerful</li>
+      </ol>
+      <div class="script">
+        <p>
+          So, coming back to the three goals stated at the beginning, how can we:
+
+          1. Grant users their privacy
+          2. Add capabilities, while loosing no existing capabilities
+          and 3. Not challenge the commercial interest of the rich and powerful
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="16000" data-y="0" data-z="-9000" data-video-seek="186">
+      <p>Grant users their privacy: <a href="https://privlyalpha.org">Trusted hosts</a> or use cryptography</p>
+      <div class="script">
+        <p>
+          First, users can host their content wherever they like. If you can trust your storage provider, you gain privacy. Cryptographic applications can support privacy and security even if you don't trust the content server or the host page.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="18000" data-y="0" data-z="-10000" data-video-seek="202">
+      <p>Add capabilities: Privly Application</p>
+      <p>Developers call these <a href="https://github.com/privly/privly-organization/wiki/Injectable-Applications">"injectable applications"</a></p>
+      <div class="script">
+        <p>
+          Second, any web application can potentially be injected into the context of a host page if it abides by certain design principles. We can expand the competitive marketplace of functionality inside our favorite communities. This is a gain even for users that don't care about privacy.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="20000" data-y="0" data-z="-11000" data-video-seek="226">
+      <p>Doesn't challenge the commercial interest of the rich and powerful: <a href="https://github.com/privly/privly-organization/wiki/Host-Page-API">Give them a choice.</a></p>
+      <p>Privly's version of the <a href="http://googlepublicpolicy.blogspot.com/2009/07/working-with-news-publishers.html">robots.txt</a> are <a href="https://github.com/privly/privly-organization/wiki/Host-Page-API">custom HTML attributes.</a></p>
+      <div class="script">
+        <p>
+          Third, Privly respects the rights of website operators. Just like Google respects the robots.txt, Privly allows websites to prevent the Privly extension from running. However, by providing more functionality in situ, Privly increases the time-on-site which is more valuable to website operators than access to your content.
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="24000" data-y="0" data-z="-13000" data-video-seek="247">
+      <p>Thanks!</p>
+      <p>Share <span class="lobster">Priv</span>(ate)<span class="lobster">ly</span></p>
+      <p>
+        <br />
+        <br />
+        <button id="addendaButton" class="control_button addenda_button">Show Addenda</button>
+      </p>
+      <div class="script">
+        <p>
+          That's it for now. The following slides have important addenda to the system. If you are a developer, I encourage you to read more and develop your own Privly application. 
+          
+          Thanks for watching, and remember to share Privately!
+        </p>
+      </div>
+    </div>
+    
+    
+    
+    <div class="step" data-x="25000" data-y="0" data-z="-14000" data-video-seek="999">
+      <p>Resources</p>
+      <ul>
+        <li><a href="http://www.privly.org/">Foundation Home</a></li>
+        <li><a href="https://github.com/privly">Repository List</a></li>
+        <li><a href="http://groups.google.com/group/privly">Development Mailing List</a></li>
+        <li><a href="http://groups.google.com/group/privly-test">Testing Mailing List</a></li>
+        <li><a href="http://groups.google.com/group/privly-announce">Announcement Mailing List</a></li>
+        <li><a href="https://github.com/privly/privly-organization/wiki">Central Wiki</a></li>
+        <li><a href="http://www.privly.org/content/bug-report">Submit a Bug</a></li>
+        <li><a href="http://www.privly.org/content/irc">IRC</a></li>
+        <li><a href="https://priv.ly/pages/download">Download Extension</a></li>
+      </ul>
+      <button id="addendaButton" class="control_button addenda_button">Next</button>
+    </div>
+    
+    
+    
+    <div class="step" data-x="26000" data-y="0" data-z="-15000" data-video-seek="999">
+      <p>Development Status</p>
+      <p><strong><a href="https://github.com/privly/privly-chrome">Chrome:</a></strong> Major release planned for April 1st. Features include anti-spoofing glyph, content server selection, content server whitelisting, and locally-served injectable applications.</p>
+      <p><strong><a href="https://github.com/privly/privly-firefox">Firefox:</a></strong> Development stalled pending a solution to this <a href="https://github.com/privly/privly-firefox/issues/31">issue</a>.</p>
+      <p></p>
+    </div>
+  </div>
+  
+  <!--
+
+      Hint is not related to impress.js in any way.
+
+      But it can show you how to use impress.js features in creative way.
+
+      When the presentation step is shown (selected) its element gets the class of "active" and the body element
+      gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+      so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+      the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+
+      This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+      the first step of presentation is visible for a couple of seconds.
+
+      ...
+
+      And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+      It's just a quick and dirty workaround to get different hint text for touch devices.
+      In a real world it should be at least placed in separate JS file ... and the touch content should be
+      probably just hidden somewhere in HTML - not hard-coded in the script.
+
+      Just sayin' ;)
+
+  -->
+  <div class="hint">
+      <p>Use a spacebar or arrow keys to navigate</p>
+  </div>
+  <script>
+  if ("ontouchstart" in document.documentElement) { 
+      document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+  }
+  </script>
+  
+  <script src="http://a.vimeocdn.com/js/froogaloop2.min.js?ecc0e-1363721731"></script>
+  <script src="../jquery-1.9.1.min.js"></script>
+  <script src="../impress.js"></script>
+  <script src="../impress-video.js"></script>
+</body>
+</html>

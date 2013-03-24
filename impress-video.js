@@ -16,6 +16,10 @@
  * 3. The user manually changes the slides.
  *    Here the video is told to seek to the starting time of the current slide
  * 
+ * When the video finishes, the video loop is exited and video seeks
+ * stop affecting the slides, and vice versa. When the person hits play again,
+ * the video seeks to the location of the current slide, and the loop is reentered.
+ *
  */
 
 /**
@@ -51,6 +55,7 @@ var nextNumber = null;
  *       for the presentation will be used.
  */
 var slideApi = null;
+var impressApi = null; // The two APIs have not been completely merged
 
 /**
  * Stores the vurrent state of the video's timer.
@@ -72,6 +77,20 @@ var url;
  */
 var player;
 
+
+/**
+ * The default height of the video iframe.
+ * The video will change to this size on any slide
+ * that does not have a video width or height specified.
+ */
+var defaultHeight = "290px";
+
+/**
+ * The default width of the video frame.
+ * The video will change to this size on any slide
+ * that does not have a video width or height specified.
+ */
+var defaultWidth = "340px";
 
 /**
  * Handle messages received from the player.
@@ -111,6 +130,9 @@ function onMessageReceived(e) {
       case 'seek':
         onSeek(data.data);
         break;
+      case 'play':
+        onPlay();
+        break;
     }
   }
 }
@@ -140,6 +162,7 @@ function post(action, value) {
 function onReady() {
   post('addEventListener', 'pause');
   post('addEventListener', 'finish');
+  post('addEventListener', 'play');
   post('addEventListener', 'playProgress');
   post('addEventListener', 'loadProgress');
   post('addEventListener', 'seek');
@@ -177,9 +200,9 @@ function onGetCurrentTime(data) {
 }
 
 /**
- * Used to ensure that the progress monitor loop is only entered once.
+ * Used to determine whether the loop should execute.
  */
-var once = false;
+var runLoop = false;
 
 /**
  * Will seek the video to the current slide when it is buffered, then it 
@@ -188,7 +211,7 @@ var once = false;
 function onLoadProgress(data) {
   
   // Only complete this once
-  if ( once ) {
+  if ( runLoop ) {
     return;
   }
   
@@ -197,25 +220,51 @@ function onLoadProgress(data) {
   var timeLoaded = data.percent * data.duration;
   
   if ( timeLoaded > slideTimings[currentSlideNumber] ) {
-    once = true;
     updateVideoBasedOnSlides();
-    loop();
+    runLoop = true;
   }
 }
 
+/**
+ * Used to continue the loop if it has been stopped.
+ */
+function onPlayProgress(data) {
+  runLoop = true;
+}
+
+/**
+ * Used to continue the loop if it has been stopped.
+ */
+function onPlay() {
+  runLoop = true;
+}
+
+/**
+ * Used to stop the loop when the video is done.
+ */
+function onFinish() {
+  runLoop = false;
+}
+
 //pass
-function onFinish() {}
-function onPlayProgress(data) {}
 function onSeek(data) {}
-function onPause() {}
+
+/**
+ * Makes the video stop updating the slides when changing slides manually.
+ */
+function onPause() {
+  runLoop = false;
+}
 
 /**
  * Function periodically checks the state of the video and 
  * updates the slide show accordingly.
  **/
 function loop() {
-  post("getCurrentTime");
-  setTimeout(loop, 500);
+  if ( runLoop ) {
+    post("getCurrentTime");
+  }
+  setTimeout(loop, 300);
 }
 
 /**
@@ -225,6 +274,7 @@ function loop() {
 function updateVideoBasedOnSlides() {
   currentSlideNumber = parseInt($( ".active" ).attr("data-slide-number"));
   nextNumber = currentSlideNumber + 1;
+  resizeVideo();
   post("seekTo", slideTimings[currentSlideNumber]);
 }
 
@@ -249,6 +299,22 @@ function updateSlideTimings() {
   });
 }
 
+/**
+ * Checks the current slides's video window settings and updates it accordingly.
+ */
+function resizeVideo() {
+  var videoWidth = $('.active').attr("data-video-width");
+  var videoHeight = $('.active').attr("data-video-height");
+  
+  if(videoWidth !== undefined && videoHeight !== undefined) {
+    $('#player').attr("height", videoHeight);
+    $('#player').attr("width", videoWidth);
+  } else {
+    $('#player').attr("height", defaultHeight);
+    $('#player').attr("width", defaultWidth);
+  }
+}
+
 // Supported keys are:
 // [space] - quite common in presentation software to move forward
 // [up] [right] / [down] [left] - again common and natural addition,
@@ -265,10 +331,12 @@ document.addEventListener("keyup", function ( event ) {
             case 34: // pg down
             case 39: // right
             case 40: // down
+              if( runLoop ) {
                 //delay a tenth of a second to allow the impress
                 //library to make the change
                 setTimeout(updateVideoBasedOnSlides, 100);
-                break;
+              }
+              break;
         }
         event.preventDefault();
     }
@@ -276,12 +344,24 @@ document.addEventListener("keyup", function ( event ) {
 
 
 // Call the API when a button is pressed.
-$('button').on('click', function() {
+$('.video_button').on('click', function() {
     post($(this).text().toLowerCase());
+});
+
+// Move to the addenda slides.
+$('.addenda_button').on('click', function() {
+  
+  //Not sure why this is necessary, but something funky in the
+  //impress library means this must be asynchronous
+  setTimeout(function(){slideApi.next();},0)
 });
 
 // Setup everying after it is loaded
 $(window).load(function(){
+  
+  //
+  // Player setup
+  //
   
   // Get Vimeo API handle
   froogaloop = $('#player');
@@ -293,7 +373,34 @@ $(window).load(function(){
   } else {
     window.attachEvent('onmessage', onMessageReceived, false);
   }
+  
+  $('#player').attr("height", defaultHeight);
+  $('#player').attr("width", defaultWidth);
+  
+  //
+  // Slide setup
+  //
   updateSlideTimings();
   impress().init();
-  slideApi = impress();
+  
+  impressApi = impress();
+  
+  // Add functionality to the impress API
+  slideApi = { 
+    next: function() {
+      impressApi.next();
+      resizeVideo();
+    },
+    prev: function() {
+      impressApi.prev();
+      resizeVideo();
+    },
+    goto: function(param) {
+      impressApi.goto(param);
+      resizeVideo();
+    }
+  }
+  
+  // Start checking the loop
+  loop();
 });
